@@ -63,19 +63,19 @@ inspiration {
   border: solid black 2px;
   border-spacing: 30px;
   text-align: center;
-  margin: 5px;
+  padding: 5px;
 }
 
 proficiencybonus {
   display:table-cell;
   border: solid black 2px;
   text-align: center;
-  margin: 5px;
+  padding: 5px;
 }
 
 savingthrows {
   display:table-cell;
   border: solid black 2px;
   text-align: center;
-  margin: 5px;
+  padding: 5px;
 }
