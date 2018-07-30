@@ -62,7 +62,7 @@ document.getElementById("downloadbutton").addEventListener("click", function(){
 function download(text, filename) {
     var element = document.createElement('a');
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
+    element.setAttribute('download', filename + ".txt");
     element.style.display = 'none';
     document.body.appendChild(element);
     element.click();
