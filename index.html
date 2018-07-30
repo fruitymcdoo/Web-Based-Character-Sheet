@@ -27,7 +27,8 @@
     <savingthrows id=savingthrows>
         Test savingthrows
     </savingthrows><br>
-    <button type=button id=button>Save File</button>
+    <button type=button id=downloadbutton>Save File</button><br>
+    <input type="file" id="fileInput">
 </body>
 
 <script>
@@ -46,17 +47,7 @@
         elem.appendChild(newField);
         }
 
-function download(text, filename) {
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-}
-
-document.getElementById("button").addEventListener("click", function(){
+document.getElementById("downloadbutton").addEventListener("click", function(){
     var characterfinal = {};
     for (var d in character) {
     		prop = character[d];
@@ -67,4 +58,35 @@ document.getElementById("button").addEventListener("click", function(){
     var filename = document.getElementById('CharacterName').value;
     download(text, filename);
 }, false);
+
+function download(text, filename) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+
+var fileInput = document.getElementById('fileInput');
+var fileDisplayArea = document.getElementById('CharacterName');
+
+fileInput.addEventListener('change', function(event) {
+    var file = fileInput.files[0];
+    var textType = /text.*/;
+    if (file.type.match(textType)) {
+				var reader = new FileReader();
+
+				reader.onload = function(event) {
+                    for (var e in character) {
+                        var field = character[e];
+                        var loadedcharacter = JSON.parse(reader.result);
+                        document.getElementById(field).value = loadedcharacter[field];
+                    }
+				}
+    reader.readAsText(file);	
+	} else { fileDisplayArea.innerText = "File not supported!" }
+});
 </script>
