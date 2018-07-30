@@ -80,9 +80,15 @@ savingthrows {
   padding: 5px;
 }
 
-skills {
-    display:table-cell;
-    border: solid black 2px;
-    text-align: center;
-    padding: 5px;
+skill {
+  display:table-cell;
+  border: solid black 2px;
+  padding: 5px;
+  width: 150px;
+}
+
+.skill {
+  margin: 10px;
+  display: inline-block;
+  vertical-align: middle;
 }
