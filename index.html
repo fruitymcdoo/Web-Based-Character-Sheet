@@ -10,7 +10,7 @@
 
 <body>
     <name id=name>
-        Test name
+        Character Name
     </name><br>
     <info id=info>
         Test info
@@ -89,6 +89,7 @@ fileInput.addEventListener('change', function(event) { //checks if the fileInput
                     }
 				}
     reader.readAsText(file); //reads the file. not sure if this is needed or not since it comes after the actual parsing. 
+    fileInput.value = ""; //clears the input file after its done loading
 	} else { fileDisplayArea.innerText = "File not supported!" } //if not match, error
 });
 </script>
