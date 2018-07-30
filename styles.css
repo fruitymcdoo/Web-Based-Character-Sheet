@@ -79,3 +79,10 @@ savingthrows {
   text-align: center;
   padding: 5px;
 }
+
+skills {
+    display:table-cell;
+    border: solid black 2px;
+    text-align: center;
+    padding: 5px;
+}
