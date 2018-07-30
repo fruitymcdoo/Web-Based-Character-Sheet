@@ -32,61 +32,63 @@
 </body>
 
 <script>
+//how to use: insert fields into the character variable, and locations for each field in to the locations variable. match via index. each character field NEEDS a location field. script then automatically creates inputs for each character field and assigns them to a div by ID based on the location.
     var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePoints,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave'.split(',');
     var locations = 'name,info,info,info,info,info,info,info,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspiration,proficiencybonus,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows'.split(',');
-    var loccount = 0;
-    for (var c in character) {
-        var newField = document.createElement('input');
-        newField.id = character[c];
-        newField.classname = character[c];
-        newField.placeholder = character[c];
-        newField.name = character[c];
-        var loc = locations[loccount];
-        loccount++
-        var elem = document.getElementById(loc);
-        elem.appendChild(newField);
+    var loccount = 0; //hack to iterate through locations because [c] wouldn't work for some reason.
+    for (var c in character) { //for each index in character, do the following
+        var newField = document.createElement('input'); //creates input element in the document
+        newField.id = character[c]; //assigns it an ID from character
+        newField.classname = character[c]; //assigns classname from character
+        newField.placeholder = character[c]; //assigns placeholder text from character
+        newField.name = character[c]; //assigns name from character
+        var loc = locations[loccount]; //gets the location that corresponds to the same index as the current character value
+        loccount++ //iterates loccount
+        var elem = document.getElementById(loc); //gets element by matching its ID to the location
+        elem.appendChild(newField); //adds the new input field to the location element
         }
 
-document.getElementById("downloadbutton").addEventListener("click", function(){
-    var characterfinal = {};
-    for (var d in character) {
-    		prop = character[d];
-        elem = document.getElementById(prop).value;
-        characterfinal[prop] = elem;
+//download button function
+document.getElementById("downloadbutton").addEventListener("click", function(){ //adds an event listener to the Download Button, runs function on click.
+    var characterfinal = {}; //creates characterfinal object
+    for (var d in character) { //for each index in character, do the following
+    		prop = character[d]; //assigns current index value from character to the prop variable
+        elem = document.getElementById(prop).value; //gets value of element by ID using each field in character object. The elements themselves are created from the character object to begin with, so this will always get all of the fields on the page.
+        characterfinal[prop] = elem; //creates key in characterfinal object named from character values, then assigns it a value based on the value of the same field on the page.
     }
-    var text = JSON.stringify(characterfinal, null, 2);
-    var filename = document.getElementById('CharacterName').value;
-    download(text, filename);
-}, false);
+    var text = JSON.stringify(characterfinal, null, 2); //turns the completed characterfinal object into a string for saving, forgot what null does but 2 specifies that it should include line breaks. Assigns it to the text variable, this is printed in the .txt file body.
+    var filename = document.getElementById('CharacterName').value; //gets a name for the file from the Character Name field.
+    download(text, filename); //calls download function, below, using text and filename options.
+}, false); //forgot what this false was for.
 
+//function to actually download the text
 function download(text, filename) {
-    var element = document.createElement('a');
-    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-    element.setAttribute('download', filename + ".txt");
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
+    var element = document.createElement('a'); //creates an element named a 
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text)); //assigns the element the text field and link attributes
+    element.setAttribute('download', filename + ".txt"); //adds download attribute with filename and .txt for firefox.
+    element.style.display = 'none'; //makes element hidden
+    document.body.appendChild(element); //add element to the page
+    element.click(); //clicks the element automatically 
+    document.body.removeChild(element); //removes the element
 }
 
+//upload button function
+var fileInput = document.getElementById('fileInput'); //gets fileInput field, aka the upload button
+var fileDisplayArea = document.getElementById('CharacterName'); //sets CharacterName to be the filedisplayarea. Just used for error printing.
 
-var fileInput = document.getElementById('fileInput');
-var fileDisplayArea = document.getElementById('CharacterName');
-
-fileInput.addEventListener('change', function(event) {
-    var file = fileInput.files[0];
-    var textType = /text.*/;
-    if (file.type.match(textType)) {
-				var reader = new FileReader();
-
-				reader.onload = function(event) {
-                    for (var e in character) {
-                        var field = character[e];
-                        var loadedcharacter = JSON.parse(reader.result);
-                        document.getElementById(field).value = loadedcharacter[field];
+fileInput.addEventListener('change', function(event) { //checks if the fileInput field is changed, aka if a file is uploaded
+    var file = fileInput.files[0]; //gets 1st file from fileInput field
+    var textType = /text.*/; //assigns text as filetype var
+    if (file.type.match(textType)) { //if filetype matches text, go ahead and load
+				var reader = new FileReader(); //creates new FileReader thingy
+				reader.onload = function(event) { //when reader loads, do the following
+                    for (var e in character) { //for each index of e in character, do the following
+                        var field = character[e]; //field is equal to the current index value of the character object
+                        var loadedcharacter = JSON.parse(reader.result); //parses the text file back into an object, assigned to loadedcharacter var
+                        document.getElementById(field).value = loadedcharacter[field]; //assigns values from the loadedcharacter object to the corresponding elements on the page by their IDs. 
                     }
 				}
-    reader.readAsText(file);	
-	} else { fileDisplayArea.innerText = "File not supported!" }
+    reader.readAsText(file); //reads the file. not sure if this is needed or not since it comes after the actual parsing. 
+	} else { fileDisplayArea.innerText = "File not supported!" } //if not match, error
 });
 </script>
