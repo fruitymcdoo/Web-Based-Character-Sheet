@@ -10,11 +10,13 @@
 
 <script>
     var fields = ['CharacterName', 'Level', 'Class', 'Race', 'PlayerName', 'ExperiencePoints', 'Alignment', 'Background', 'Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
-    fields.forEach(function(element) {
-        var input = document.createElement("input");
-        input.setAttribute('type', 'text');
-        document.form.appendChild(div);
-        });
+    for (var f in fields) {
+        var newField = document.createElement('input');
+        newField.id = fields[f];
+        newField.classname = "field";
+        newField.innerHTML = fields[f];
+        document.form.appendChild(newField);
+        }
 </script>
 
 <body>
