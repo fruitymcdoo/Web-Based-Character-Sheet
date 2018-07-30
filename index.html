@@ -9,12 +9,13 @@
 </head>
 
 <script>
-    var fields = ['CharacterName', 'Level', 'Class', 'Race', 'PlayerName', 'ExperiencePoints', 'Alignment', 'Background', 'Strength', 'Dexterity', 'Constitution', 'Intelligence', 'Wisdom', 'Charisma'];
+    var fields = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePoints,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma'.split(',');
     for (var f in fields) {
         var newField = document.createElement('input');
         newField.id = fields[f];
-        newField.classname = "field";
-        newField.innerHTML = fields[f];
+        newField.classname = fields[f];
+        newField.placeholder = fields[f];
+        newField.name = fields[f];
         document.form.appendChild(newField);
         }
 </script>
