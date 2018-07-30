@@ -36,13 +36,16 @@ col1 {
   width: 33%;
 }
 
-subcol2 {
-  display: table-cell;
-}
-
 subcol1 {
   background: lightgray;
   margin-right: 10px;
+  width: 90px;
+}
+
+subcol2 {
+    display: table-column;
+    width: 190px;
+    text-align: center;
 }
 
 .abilityscore {
@@ -59,14 +62,17 @@ inspiration {
   display:table-cell;
   border: solid black 2px;
   border-spacing: 30px;
+  text-align: center;
 }
 
 proficiencybonus {
   display:table-cell;
   border: solid black 2px;
+  text-align: center;
 }
 
 savingthrows {
   display:table-cell;
   border: solid black 2px;
+  text-align: center;
 }
