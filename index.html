@@ -8,20 +8,60 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
+<body>
+    <name id=name>
+        Test name
+    </name>
+    <info id=info>
+        Test info
+    </info>
+    <abilityscore id=abilityscore>
+        Test abilityscore
+    </abilityscore>
+    <button type=button id=button>Save File</button>
+</body>
+
 <script>
-    var fields = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePoints,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma'.split(',');
-    for (var f in fields) {
+    var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePoints,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma'.split(',');
+    var locations = 'name,info,info,info,info,info,info,info,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore'.split(',');
+    var loccount = 0;
+    for (var c in character) {
         var newField = document.createElement('input');
-        newField.id = fields[f];
-        newField.classname = fields[f];
-        newField.placeholder = fields[f];
-        newField.name = fields[f];
-        form.appendChild(newField);
+        newField.id = character[c];
+        newField.classname = character[c];
+        newField.placeholder = character[c];
+        newField.name = character[c];
+        var loc = locations[loccount];
+        loccount++
+        var elem = document.getElementById(loc);
+        elem.appendChild(newField);
         }
+
+function download(text, filename) {
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    element.setAttribute('download', filename);
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+}
+
+document.getElementById("button").addEventListener("click", function(){
+    var characterfinal = {};
+    for (var d in character) {
+    		prop = character[d];
+        elem = document.getElementById(prop).value;
+        characterfinal[prop] = elem;
+    }
+    var text = JSON.stringify(characterfinal, null, 2);
+    var filename = document.getElementById('CharacterName').value;
+    download(text, filename);
+}, false);
 </script>
 
-<body>
-      <form>
-        Form goes here:
-      </form>
-</body>
+
+
+
+
+var characterfinal = {"CharacterName":function(){document.getElementById('CharacterName').value;},"Level": "Level","Class": "Class","Race": "Race","PlayerName": "PlayerName","ExperiencePoints": "ExperiencePoints","Alignment": "Alignment","Background": "Background","Strength": "Strength","Dexterity": "Dexterity","Constitution": "Constitution","Intelligence": "Intelligence","Wisdom": "Wisdom","Charisma": "Charisma"};
