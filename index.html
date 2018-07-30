@@ -7,26 +7,33 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
-
+    
 <body>
-    <name id=name>
-        Character name
-    </name><br>
-    <info id=info>
-        Test info
-    </info><br>
-    <abilityscore id=abilityscore>
-        Test abilityscore
-    </abilityscore><br>
-    <inspiration id=inspiration>
-        Test inspiration
-    </inspiration><br>
-    <proficiencybonus id=proficiencybonus>
-        Test proficiencybonus
-    </proficiencybonus><br>
-    <savingthrows id=savingthrows>
-        Test savingthrows
-    </savingthrows><br>
+    <top>
+        <name id=name>
+        <div id=charname>
+        CHARACTER NAME
+        </div>
+        </name><br>
+        <info id=info>
+        </info><br>
+    </top>
+        
+    <col1>
+        <abilityscores>
+            <abilityscore id=abilityscore>
+            </abilityscore><br>
+        </abilityscores>
+        <inspiration id=inspiration>
+            Test inspiration
+        </inspiration><br>
+        <proficiencybonus id=proficiencybonus>
+            Test proficiencybonus
+        </proficiencybonus><br>
+        <savingthrows id=savingthrows>
+            Test savingthrows
+        </savingthrows><br>
+    </col1>
     <button type=button id=downloadbutton>Save File</button><br>
     <input type="file" id="fileInput">
 </body>
@@ -38,11 +45,11 @@
     var loccount = 0; //hack to iterate through locations because [c] wouldn't work for some reason.
     for (var c in character) { //for each index in character, do the following
         var newField = document.createElement('input'); //creates input element in the document
+        var loc = locations[loccount]; //gets the location that corresponds to the same index as the current character value
         newField.id = character[c]; //assigns it an ID from character
-        newField.classname = character[c]; //assigns classname from character
+        newField.className = loc; //assigns classname from location
         newField.placeholder = character[c]; //assigns placeholder text from character
         newField.name = character[c]; //assigns name from character
-        var loc = locations[loccount]; //gets the location that corresponds to the same index as the current character value
         loccount++ //iterates loccount
         var elem = document.getElementById(loc); //gets element by matching its ID to the location
         elem.appendChild(newField); //adds the new input field to the location element
