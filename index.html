@@ -60,6 +60,13 @@
         loccount++ //iterates loccount
         var elem = document.getElementById(loc); //gets element by matching its ID to the location
         elem.appendChild(newField); //adds the new input field to the location element
+        if (loc == "skill") {
+            newField.type = 'checkbox';
+            var newlabel=document.createElement("Label");
+            newlabel.setAttribute("for",character[c]);
+            newlabel.innerHTML = character[c];
+            skill.appendChild(newlabel);
+        }
         }
 
 //download button function
@@ -67,7 +74,9 @@ document.getElementById("downloadbutton").addEventListener("click", function(){ 
     var characterfinal = {}; //creates characterfinal object
     for (var d in character) { //for each index in character, do the following
     		prop = character[d]; //assigns current index value from character to the prop variable
-        elem = document.getElementById(prop).value; //gets value of element by ID using each field in character object. The elements themselves are created from the character object to begin with, so this will always get all of the fields on the page.
+        if (document.getElementById(prop).type == "checkbox") {
+            elem = document.getElementById(prop).checked;
+        } else {elem = document.getElementById(prop).value;} //gets value of element by ID using each field in character object. The elements themselves are created from the character object to begin with, so this will always get all of the fields on the page.
         characterfinal[prop] = elem; //creates key in characterfinal object named from character values, then assigns it a value based on the value of the same field on the page.
     }
     var text = JSON.stringify(characterfinal, null, 2); //turns the completed characterfinal object into a string for saving, forgot what null does but 2 specifies that it should include line breaks. Assigns it to the text variable, this is printed in the .txt file body.
@@ -99,7 +108,9 @@ fileInput.addEventListener('change', function(event) { //checks if the fileInput
                     for (var e in character) { //for each index of e in character, do the following
                         var field = character[e]; //field is equal to the current index value of the character object
                         var loadedcharacter = JSON.parse(reader.result); //parses the text file back into an object, assigned to loadedcharacter var
-                        document.getElementById(field).value = loadedcharacter[field]; //assigns values from the loadedcharacter object to the corresponding elements on the page by their IDs. 
+                        if (document.getElementById(field).type == "checkbox") {
+                            document.getElementById(field).checked = loadedcharacter[field];
+                        } else {document.getElementById(field).value = loadedcharacter[field];} //assigns values from the loadedcharacter object to the corresponding elements on the page by their IDs. 
                     }
 				}
     reader.readAsText(file); //reads the file. not sure if this is needed or not since it comes after the actual parsing. 
