@@ -50,7 +50,8 @@ subcol2 {
 }
 
 .abilityscore {
-margin: 5px 5px -5px 5px;
+margin: 5px;
+margin-bottom: -5px;
 display: inline-block;
 border: solid black 2px;
 width: 80px;
@@ -63,7 +64,8 @@ background: white;
 position: relative;
 width: 25px;
 border: solid black 2px;
-text-align: center;;
+text-align: center;
+vertical-align: middle;
 }
 
 inspiration {
@@ -74,7 +76,7 @@ text-align: center;
 padding: 5px;
 }
 
-proficiencybonus {
+proficiency {
 display:table-cell;
 border: solid black 2px;
 text-align: center;
@@ -93,6 +95,8 @@ white-space: nowrap;
 .savingthrowsmod {
 width: 25px;
 margin-right: 5px;
+text-align: center;
+vertical-align: middle;
 }
 
 skill {
@@ -112,4 +116,6 @@ vertical-align: middle;
 .skillmod {
 width: 25px;
 margin-right: 5px;
+text-align: center;
+vertical-align: middle;
 }
