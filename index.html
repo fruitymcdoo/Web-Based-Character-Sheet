@@ -33,10 +33,10 @@
             Proficiency Bonus
         </proficiencybonus><br>
         <savingthrows id=savingthrows>
-            Saving Throws
+            Saving Throws<br>
         </savingthrows><br>
         <skill id=skill>
-            Skills
+            Skills<br>
         </skill><br>
       </subcol2> 
     </col1>
@@ -47,8 +47,10 @@
 
 <script>
 //how to use: insert fields into the character variable, and locations for each field in to the locations variable. match via index. each character field NEEDS a location field. script then automatically creates inputs for each character field and assigns them to a div by ID based on the location.
-    var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Charisma,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival'.split(',');
-    var locations = 'name,info,info,info,info,info,info,info,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspiration,proficiencybonus,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill'.split(',');
+var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival'.split(',');
+    var locations = 'name,info,info,info,info,info,info,info,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspiration,proficiencybonus,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill'.split(',');
+    var label = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis)'.split(',');
+    var mods = new Array();
     var loccount = 0; //hack to iterate through locations because [c] wouldn't work for some reason.
     for (var c in character) { //for each index in character, do the following
         var newField = document.createElement('input'); //creates input element in the document
@@ -60,12 +62,22 @@
         loccount++ //iterates loccount
         var elem = document.getElementById(loc); //gets element by matching its ID to the location
         elem.appendChild(newField); //adds the new input field to the location element
-        if (loc == "skill") {
+        if (loc == "skill" || loc == "savingthrows" || loc == "abilityscore") {
+        		var newmod = document.createElement('input');
+            newmod.className = loc + "mod";
+            newmod.mod = true;
+            newmod.id = character[c] + "mod";
+            mods.push(character[c] + "mod");
+            elem.appendChild(newmod);
+        }
+        if (loc == "skill" || loc == "savingthrows") {
             newField.type = 'checkbox';
             var newlabel=document.createElement("Label");
+            var newbr=document.createElement("br");
             newlabel.setAttribute("for",character[c]);
-            newlabel.innerHTML = character[c];
-            skill.appendChild(newlabel);
+            newlabel.innerHTML = label[c];
+            elem.appendChild(newlabel);
+            newlabel.appendChild(newbr);
         }
         }
 
@@ -78,6 +90,11 @@ document.getElementById("downloadbutton").addEventListener("click", function(){ 
             elem = document.getElementById(prop).checked;
         } else {elem = document.getElementById(prop).value;} //gets value of element by ID using each field in character object. The elements themselves are created from the character object to begin with, so this will always get all of the fields on the page.
         characterfinal[prop] = elem; //creates key in characterfinal object named from character values, then assigns it a value based on the value of the same field on the page.
+    }
+    for (var m in mods) {
+    	propmod = mods[m];
+      elemmod = document.getElementById(propmod).value;
+      characterfinal[propmod] = elemmod;
     }
     var text = JSON.stringify(characterfinal, null, 2); //turns the completed characterfinal object into a string for saving, forgot what null does but 2 specifies that it should include line breaks. Assigns it to the text variable, this is printed in the .txt file body.
     var filename = document.getElementById('CharacterName').value; //gets a name for the file from the Character Name field.
@@ -112,9 +129,31 @@ fileInput.addEventListener('change', function(event) { //checks if the fileInput
                             document.getElementById(field).checked = loadedcharacter[field];
                         } else {document.getElementById(field).value = loadedcharacter[field];} //assigns values from the loadedcharacter object to the corresponding elements on the page by their IDs. 
                     }
+                    for (var n in mods) {
+                    	var fieldmod = mods[n];
+                      document.getElementById(fieldmod).value = loadedcharacter[fieldmod];
+                    }
 				}
     reader.readAsText(file); //reads the file. not sure if this is needed or not since it comes after the actual parsing. 
     fileInput.value = ""; //clears the input file after its done loading
 	} else { fileDisplayArea.innerText = "File not supported!" } //if not match, error
+});
+
+//section for autocalcs
+
+var level = document.getElementById('Level');
+var prof = document.getElementById('ProficiencyBonus');
+level.addEventListener('change', function() {
+if (level.value >= 1 && level.value <= 4) {
+prof.value = 2;
+} else if (level.value >= 5 && level.value <= 8) {
+prof.value = 3;
+} else if (level.value >= 9 && level.value <= 12) {
+prof.value = 4;
+} else if (level.value >= 13 && level.value <= 16) {
+prof.value = 5;
+} else if (level.value >= 17 && level.value <= 20) {
+prof.value = 6;
+} else {prof.value = "";}
 });
 </script>
