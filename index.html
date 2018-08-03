@@ -1,5 +1,4 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
-
 <head>
     <meta charset="utf-8">
     <title>Character Sheet</title>
@@ -27,10 +26,8 @@
       </subcol1>
       <subcol2>
         <inspiration id=inspiration>
-            Inspiration
-        </inspiration><br>
+        </inspiration>
         <proficiency id=proficiency>
-            Proficiency Bonus
         </proficiency><br>
         <savingthrows id=savingthrows>
             Saving Throws<br>
@@ -49,7 +46,7 @@
 //how to use: insert fields into the character variable, and locations for each field in to the locations variable. match via index. each character field NEEDS a location field. script then automatically creates inputs for each character field and assigns them to a div by ID based on the location.
 var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival'.split(',');
     var locations = 'name,info,info,info,info,info,info,info,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspiration,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill'.split(',');
-    var label = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis)'.split(',');
+    var label = 'Character Name,Level,Class,Race,Player Name,Experience Ponts,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis)'.split(',');
     var SkillsAndAbilities = {"Athletics":"Strength","Acrobatics":"Dexterity","SleightofHand":"Dexterity","Stealth":"Dexterity","Arcana":"Intelligence","History":"Intelligence","Investigation":"Intelligence","Nature":"Intelligence","Religion":"Intelligence","AnimalHandling":"Wisdom","Insight":"Wisdom","Medicine":"Wisdom","Perception":"Wisdom","Survival":"Wisdom","Deception":"Charisma","Intimidation":"Charisma","Performance":"Charisma","Persuasion":"Charisma"}
     var mods = new Array();
     var loccount = 0; //hack to iterate through locations because [c] wouldn't work for some reason.
@@ -63,22 +60,36 @@ var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Align
         loccount++ //iterates loccount
         var elem = document.getElementById(loc); //gets element by matching its ID to the location
         elem.appendChild(newField); //adds the new input field to the location element
-        if (loc == "skill" || loc == "savingthrows" || loc == "abilityscore") {
+            var newlabel=document.createElement("Label");
+            var newbr=document.createElement("br");
+            newlabel.setAttribute("for",character[c]);
+            newlabel.id = label[c] + "label";
+            newlabel.className = loc + "label";
+            newlabel.innerHTML = label[c];
+        if (loc == "abilityscore") {
         		var newmod = document.createElement('input');
             newmod.className = loc + "mod";
             newmod.setAttribute('name', SkillsAndAbilities[character[c]]);
             newmod.id = character[c] + "mod";
             mods.push(character[c] + "mod");
             elem.appendChild(newmod);
-        }
-        if (loc == "skill" || loc == "savingthrows") {
+            newField.before(newlabel);
+            newlabel.before(newbr)
+        } else if (loc == "skill" || loc == "savingthrows") {
             newField.type = 'checkbox';
-            var newlabel=document.createElement("Label");
-            var newbr=document.createElement("br");
-            newlabel.setAttribute("for",character[c]);
-            newlabel.innerHTML = label[c];
+            var newmod = document.createElement('input');
+            newmod.className = loc + "mod";
+            newmod.setAttribute('name', SkillsAndAbilities[character[c]]);
+            newmod.id = character[c] + "mod";
+            mods.push(character[c] + "mod");
+            elem.appendChild(newmod);
             elem.appendChild(newlabel);
             newlabel.appendChild(newbr);
+        } else { 
+        	newField.before(newlabel);
+          newlabel.before(newbr);
+        	newField.appendChild(newbr);
+          newlabel.appendChild(newbr);
         }
         }
 
@@ -206,15 +217,17 @@ function update() {
   if (abilitySave.checked == true) {
   abilitymod.value = scores[abilityvalue];
   savemod.value = parseInt(abilitymod.value) + parseInt(prof.value);
-  } else {
+  } else if (scores[abilityvalue] != undefined) {
   abilitymod.value = scores[abilityvalue];
   savemod.value = abilitymod.value;
-  } 
+  } else {abilitymod.value = ""; savemod.value = "";}
   for (var i = 0; i < SkillArray.length; i++) {
   var skillmod = document.getElementById(SkillArray[i].id + "mod");
   var skillability = skillmod.name;
   if (SkillArray[i].checked == true) {
   skillmod.value = parseInt(document.getElementById(skillability + "mod").value) + parseInt(prof.value);
+  } else if (document.getElementById(skillability + "mod").value == undefined) {
+  skillmod.value = "";
   } else { skillmod.value = document.getElementById(skillability + "mod").value; }
   }
 }
