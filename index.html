@@ -34,8 +34,8 @@
         </abilityscores>
       </subcol1>
       <subcol2>
-        <inspiration id=inspiration>
-        </inspiration>
+        <inspirationdiv id=inspirationdiv>
+        </inspirationdiv>
         <proficiency id=proficiency>
         </proficiency><br>
         <savingthrows id=savingthrows>
@@ -54,7 +54,7 @@
 <script>
 //how to use: insert fields into the character variable, and locations for each field in to the locations variable. match via index. each character field NEEDS a location field. script then automatically creates inputs for each character field and assigns them to a div by ID based on the location.
 var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,ExperiencePoints,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival'.split(',');
-    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspiration,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill'.split(',');
+    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspirationdiv,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill'.split(',');
     var label = 'Character Name,Class,Level,Background,Player Name,Race,Alignment,Experience Points,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis)'.split(',');
     var SkillsAndAbilities = {"Athletics":"Strength","Acrobatics":"Dexterity","SleightofHand":"Dexterity","Stealth":"Dexterity","Arcana":"Intelligence","History":"Intelligence","Investigation":"Intelligence","Nature":"Intelligence","Religion":"Intelligence","AnimalHandling":"Wisdom","Insight":"Wisdom","Medicine":"Wisdom","Perception":"Wisdom","Survival":"Wisdom","Deception":"Charisma","Intimidation":"Charisma","Performance":"Charisma","Persuasion":"Charisma"}
     var mods = new Array();
