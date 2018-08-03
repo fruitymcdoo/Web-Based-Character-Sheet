@@ -25,7 +25,7 @@
         </inforow2>
         </info><br>
     </top>
-        
+  <columns>   
     <col1>
       <subcol1>
         <abilityscores>
@@ -46,6 +46,16 @@
         </skill><br>
       </subcol2> 
     </col1>
+    <col2>
+        <ACInitSpeed id=ACInitSpeed>
+          <ArmorClassDiv id=ArmorClassDiv></ArmorClassDiv>
+          <InitiativeDiv id=InitiativeDiv></InitiativeDiv>
+          <SpeedDiv id=SpeedDiv></SpeedDiv>
+        </ACInitSpeed><br>
+        <Hitpoints id=hitpoints></Hitpoints>
+        <HDandDeath id=HDandDeath></HDandDeath>
+    </col2>
+  </columns>
     <br><br><br><br><br>
     <button type=button id=downloadbutton>Save File</button><br>
     <input type="file" id="fileInput">
@@ -53,9 +63,9 @@
 
 <script>
 //how to use: insert fields into the character variable, and locations for each field in to the locations variable. match via index. each character field NEEDS a location field. script then automatically creates inputs for each character field and assigns them to a div by ID based on the location.
-var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,ExperiencePoints,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival'.split(',');
-    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspirationdiv,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill'.split(',');
-    var label = 'Character Name,Class,Level,Background,Player Name,Race,Alignment,Experience Points,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis)'.split(',');
+var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,ExperiencePoints,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival,ArmorClass,Initiative,Speed,HitPointMaximum,CurrentHitPoints,TemporaryHitPoints,HitDice,DeathSaves'.split(',');
+    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspirationdiv,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,ArmorClassDiv,InitiativeDiv,SpeedDiv,hitpoints,hitpoints,hitpoints,HDandDeath,HDandDeath'.split(',');
+    var label = 'Character Name,Class,Level,Background,Player Name,Race,Alignment,Experience Points,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis),Armor Class,Initiative,Speed,Hit Point Maximum,Current Hit Points,Temporary Hit Points,Hit Dice,Death Saves'.split(',');
     var SkillsAndAbilities = {"Athletics":"Strength","Acrobatics":"Dexterity","SleightofHand":"Dexterity","Stealth":"Dexterity","Arcana":"Intelligence","History":"Intelligence","Investigation":"Intelligence","Nature":"Intelligence","Religion":"Intelligence","AnimalHandling":"Wisdom","Insight":"Wisdom","Medicine":"Wisdom","Perception":"Wisdom","Survival":"Wisdom","Deception":"Charisma","Intimidation":"Charisma","Performance":"Charisma","Persuasion":"Charisma"}
     var mods = new Array();
     var loccount = 0; //hack to iterate through locations because [c] wouldn't work for some reason.
@@ -94,7 +104,7 @@ var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,
             elem.appendChild(newmod);
             elem.appendChild(newlabel);
             newlabel.appendChild(newbr);
-        } else if (loc == "classdiv" || loc == "leveldiv" || loc == "backgrounddiv" || loc == "playernamediv" || loc == "racediv" || loc == "alignmentdiv" || loc == "experiencepointsdiv") { 
+        } else if (loc == "classdiv" || loc == "leveldiv" || loc == "backgrounddiv" || loc == "playernamediv" || loc == "racediv" || loc == "alignmentdiv" || loc == "experiencepointsdiv" || loc == "ArmorClassDiv" || loc == "InitiativeDiv" || loc == "SpeedDiv") { 
         	  newField.after(newlabel);
             newlabel.before(newbr);
         } else if (loc == "charname") {} else {
