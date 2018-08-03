@@ -136,14 +136,16 @@ text-align: center;
 }
 
 #inspirationdiv, #proficiency {
-font-size: 0.75em;
 position: relative;
 display:table-cell;
 border: solid black 2px;
 text-align: center;
 vertical-align: top;
 width: 50%;
+height: auto;
 padding: 5px;
+background: white;
+white-space: nowrap;
 }
 
 #Inspiration, #ProficiencyBonus {
@@ -151,8 +153,14 @@ padding: 5px;
   width: 40px;
   height: 20px;
   margin-top: 5px;
+  width: 80px;
+  height: 50px;
+  border: none;
   font-size: 1.2em;
-  border: solid black 1px;
+}
+
+#Inspirationlabel, #ProficiencyBonuslabel {
+  font-size: 0.75em;
 }
 
 savingthrows {
@@ -189,23 +197,22 @@ border: solid black 1px;
 }
 
 col2 {
-padding-top: 10px;
+padding-top: 4px;
 position: relative;
-border-spacing: 5px 0px;
+border-spacing: 8px 4px;
 border-collapse:separate;
 background: lightgray;
 text-align: center;
 }
 
-#ACIntSpeed {
+#ACIntSpeed, #hitpoints {
   display: table-column;
   width: auto;
   text-align: center;
-  border-spacing: 5px 0px;
   border-collapse:separate;
 }
 
-#ArmorClassDiv, #InitiativeDiv, #SpeedDiv {
+#ArmorClassDiv, #InitiativeDiv, #SpeedDiv, #HitPointMaximumDiv, #CurrentHitPointsDiv, #TemporaryHitPointsDiv {
 position: relative;
 display:table-cell;
 border: solid black 2px;
@@ -217,7 +224,7 @@ padding: 5px;
 background: white;
 }
 
-#ArmorClass, #Initiative, #Speed {
+#ArmorClass, #Initiative, #Speed, #HitPointMaximum, #CurrentHitPoints, #TemporaryHitPoints {
 text-align: center;
 width: 80px;
 height: 50px;
@@ -225,6 +232,10 @@ border: none;
 font-size: 1.1em;
 }
 
-.ArmorClassDivlabel, .InitiativeDivlabel, .SpeedDivlabel {
+#ArmorClasslabel, #Initiativelabel, #Speedlabel, #HitPointMaximumlabel, #CurrentHitPointslabel, #TemporaryHitPointslabel {
 font-size: 0.75em;
+}
+
+col2 *::placeholder, subcol2 *::placeholder {
+  font-size: 0.5em;
 }

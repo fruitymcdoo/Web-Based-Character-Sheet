@@ -53,6 +53,9 @@
           <SpeedDiv id=SpeedDiv></SpeedDiv>
         </ACInitSpeed><br>
         <Hitpoints id=hitpoints></Hitpoints>
+          <HitPointMaximumDiv id=HitPointMaximumDiv></HitPointMaximumDiv>
+          <CurrentHitPointsDiv id=CurrentHitPointsDiv></CurrentHitPointsDiv>
+          <TemporaryHitPointsDiv id=TemporaryHitPointsDiv></TemporaryHitPointsDiv>
         <HDandDeath id=HDandDeath></HDandDeath>
     </col2>
   </columns>
@@ -64,8 +67,8 @@
 <script>
 //how to use: insert fields into the character variable, and locations for each field in to the locations variable. match via index. each character field NEEDS a location field. script then automatically creates inputs for each character field and assigns them to a div by ID based on the location.
 var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,ExperiencePoints,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival,ArmorClass,Initiative,Speed,HitPointMaximum,CurrentHitPoints,TemporaryHitPoints,HitDice,DeathSaves'.split(',');
-    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspirationdiv,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,ArmorClassDiv,InitiativeDiv,SpeedDiv,hitpoints,hitpoints,hitpoints,HDandDeath,HDandDeath'.split(',');
-    var label = 'Character Name,Class,Level,Background,Player Name,Race,Alignment,Experience Points,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis),Armor Class,Initiative,Speed,Hit Point Maximum,Current Hit Points,Temporary Hit Points,Hit Dice,Death Saves'.split(',');
+    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspirationdiv,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,ArmorClassDiv,InitiativeDiv,SpeedDiv,HitPointMaximumDiv,CurrentHitPointsDiv,TemporaryHitPointsDiv,HDandDeath,HDandDeath'.split(',');
+    var label = 'Character Name,Class,Level,Background,Player Name,Race,Alignment,Experience Points,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis),Armor Class,Initiative,Speed,Maximum HP,Current HP,Temporary HP,Hit Dice,Death Saves'.split(',');
     var SkillsAndAbilities = {"Athletics":"Strength","Acrobatics":"Dexterity","SleightofHand":"Dexterity","Stealth":"Dexterity","Arcana":"Intelligence","History":"Intelligence","Investigation":"Intelligence","Nature":"Intelligence","Religion":"Intelligence","AnimalHandling":"Wisdom","Insight":"Wisdom","Medicine":"Wisdom","Perception":"Wisdom","Survival":"Wisdom","Deception":"Charisma","Intimidation":"Charisma","Performance":"Charisma","Persuasion":"Charisma"}
     var mods = new Array();
     var loccount = 0; //hack to iterate through locations because [c] wouldn't work for some reason.
@@ -74,7 +77,7 @@ var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,
         var loc = locations[loccount]; //gets the location that corresponds to the same index as the current character value
         newField.id = character[c]; //assigns it an ID from character
         newField.className = loc; //assigns classname from location
-        newField.placeholder = character[c]; //assigns placeholder text from character
+        newField.placeholder = label[c]; //assigns placeholder text from character
         newField.name = character[c]; //assigns name from character
         loccount++ //iterates loccount
         var elem = document.getElementById(loc); //gets element by matching its ID to the location
@@ -104,7 +107,7 @@ var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,
             elem.appendChild(newmod);
             elem.appendChild(newlabel);
             newlabel.appendChild(newbr);
-        } else if (loc == "classdiv" || loc == "leveldiv" || loc == "backgrounddiv" || loc == "playernamediv" || loc == "racediv" || loc == "alignmentdiv" || loc == "experiencepointsdiv" || loc == "ArmorClassDiv" || loc == "InitiativeDiv" || loc == "SpeedDiv") { 
+        } else if (loc == "classdiv" || loc == "leveldiv" || loc == "backgrounddiv" || loc == "playernamediv" || loc == "racediv" || loc == "alignmentdiv" || loc == "experiencepointsdiv" || loc == "ArmorClassDiv" || loc == "InitiativeDiv" || loc == "SpeedDiv" || loc == "HitPointMaximumDiv" || loc == "CurrentHitPointsDiv" || loc == "TemporaryHitPointsDiv") { 
         	  newField.after(newlabel);
             newlabel.before(newbr);
         } else if (loc == "charname") {} else {
@@ -235,6 +238,7 @@ function update() {
 	var abilitymod = document.getElementById(event.target.id + "mod");
   var abilitySave = document.getElementById(event.target.id + "Save");
   var savemod = document.getElementById(event.target.id + "Savemod");
+  var init = document.getElementById('Initiative');
   var prof = document.getElementById('ProficiencyBonus');
   if (abilitySave.checked == true) {
   abilitymod.value = scores[abilityvalue];
@@ -252,6 +256,7 @@ function update() {
   skillmod.value = "";
   } else { skillmod.value = document.getElementById(skillability + "mod").value; }
   }
+  init.value = document.getElementById('Dexteritymod').value;
 }
 
 function updatesaves() {
