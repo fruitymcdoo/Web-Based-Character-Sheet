@@ -6,30 +6,71 @@ body {
 
 top {
 display: flex;
+flex-direction: row;
+align-items: center;
 }  
 
-name {
-    width: 20%;
-    padding: 10px;
-    margin: 10px;
-    left: 0px;
-    border: solid black 2px;
-    position: relative;
+#charname {
+  padding: 10px;
+  margin: 10px;
+  margin-left: 0px;
+  border: solid black 2px;
+  height: 3em;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 
-#charname {
-  position: absolute;
-  margin-top: 30px;
+#CharacterName {
+  font-size: 1.5em;
+  border:none;
+  text-align: center;
 }
 
 info {
-flex: 1;
 padding: 10px;
 margin: 10px;
+margin-left: 0px;
 left: 0px;
 border: solid black 2px;
+white-space: nowrap;
+height: 100px;
+display: flex;
+flex-direction: column;
 }
 
+inforow1, inforow2 {
+  display: flex;
+  flex-direction: row;
+}
+
+classdiv, leveldiv, backgrounddiv, playernamediv {
+  margin-bottom: 0.5em;
+  margin-right: 1em;
+}
+
+racediv,alignmentdiv,experiencepointsdiv {
+  margin-right: 1em;
+}
+
+.classdiv,.leveldiv,.backgrounddiv,.playernamediv,.racediv,.alignmentdiv,.experiencepointsdiv {
+  font-size: 1.2em;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.classdiv{width: 10em;}
+.leveldiv{width: 3em;}
+.backgrounddiv{width: 7em;}
+.playernamediv{width: 10em;}
+.racediv{width: 6em;}
+.alignmentdiv{width: 8em;}
+.experiencepointsdiv{width: 8em;}
+
+.classdivlabel,.leveldivlabel,.backgrounddivlabel,.playernamedivlabel,.racedivlabel,.alignmentdivlabel,.experiencepointsdivlabel {
+  font-size: 0.8em;
+  color: grey;
+}
 
 col1 {
 display: flex;
@@ -59,7 +100,7 @@ abilityscores {
 .abilityscore {
 margin: 5px;
 margin-top: -20px;
-margin-bottom: -20px;
+margin-bottom: -15px;
 display: inline-block;
 border: solid black 2px;
 width: 100px;
@@ -71,7 +112,7 @@ background: white;
 .abilityscoremod {
 font-size: 1.2em;
 position: relative;
-margin-bottom: 10px;
+margin-bottom: 20px;
 width: 40px;
 height: 30px;
 border: solid black 2px;
@@ -87,7 +128,7 @@ margin-left: 2px;
 text-align: center;
 }
 
-inspiration, proficiency {
+#inspiration, #proficiency {
 font-size: 0.75em;
 position: relative;
 display:table-cell;
@@ -104,6 +145,7 @@ padding: 5px;
   height: 20px;
   margin-top: 5px;
   font-size: 1.2em;
+  border: solid black 1px;
 }
 
 savingthrows {
@@ -132,6 +174,9 @@ vertical-align: middle;
 .skillmod, .savingthrowsmod {
 width: 25px;
 margin-right: 5px;
+margin-top: 2px;
+margin-bottom: 1px;
 text-align: center;
 vertical-align: middle;
+border: solid black 1px;
 }

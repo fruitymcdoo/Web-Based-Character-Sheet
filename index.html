@@ -9,11 +9,20 @@
     
 <body>
     <top>
-        <name id=name>
-        <div id=charname>
-        </div>
+        <name id=charname>
         </name><br>
         <info id=info>
+        <inforow1 id=inforow1>
+          <classdiv id=classdiv></classdiv>
+          <leveldiv id=leveldiv></leveldiv>
+          <backgrounddiv id=backgrounddiv></backgrounddiv>
+          <playernamediv id=playernamediv></playernamediv>
+        </inforow1>
+        <inforow2 id=inforow2>
+          <racediv id=racediv></racediv>
+          <alignmentdiv id=alignmentdiv></alignmentdiv>
+          <experiencepointsdiv id=experiencepointsdiv></experiencepointsdiv>
+        </inforow2>
         </info><br>
     </top>
         
@@ -44,9 +53,9 @@
 
 <script>
 //how to use: insert fields into the character variable, and locations for each field in to the locations variable. match via index. each character field NEEDS a location field. script then automatically creates inputs for each character field and assigns them to a div by ID based on the location.
-var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival'.split(',');
-    var locations = 'name,info,info,info,info,info,info,info,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspiration,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill'.split(',');
-    var label = 'Character Name,Level,Class,Race,Player Name,Experience Ponts,Alignment,Background,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis)'.split(',');
+var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,ExperiencePoints,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival'.split(',');
+    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspiration,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill'.split(',');
+    var label = 'Character Name,Class,Level,Background,Player Name,Race,Alignment,Experience Points,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis)'.split(',');
     var SkillsAndAbilities = {"Athletics":"Strength","Acrobatics":"Dexterity","SleightofHand":"Dexterity","Stealth":"Dexterity","Arcana":"Intelligence","History":"Intelligence","Investigation":"Intelligence","Nature":"Intelligence","Religion":"Intelligence","AnimalHandling":"Wisdom","Insight":"Wisdom","Medicine":"Wisdom","Perception":"Wisdom","Survival":"Wisdom","Deception":"Charisma","Intimidation":"Charisma","Performance":"Charisma","Persuasion":"Charisma"}
     var mods = new Array();
     var loccount = 0; //hack to iterate through locations because [c] wouldn't work for some reason.
@@ -60,12 +69,12 @@ var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Align
         loccount++ //iterates loccount
         var elem = document.getElementById(loc); //gets element by matching its ID to the location
         elem.appendChild(newField); //adds the new input field to the location element
-            var newlabel=document.createElement("Label");
-            var newbr=document.createElement("br");
-            newlabel.setAttribute("for",character[c]);
-            newlabel.id = label[c] + "label";
-            newlabel.className = loc + "label";
-            newlabel.innerHTML = label[c];
+        var newlabel=document.createElement("Label");
+        var newbr=document.createElement("br");
+        newlabel.setAttribute("for",character[c]);
+        newlabel.id = character[c] + "label";
+        newlabel.className = loc + "label";
+        newlabel.innerHTML = label[c];
         if (loc == "abilityscore") {
         		var newmod = document.createElement('input');
             newmod.className = loc + "mod";
@@ -74,7 +83,7 @@ var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Align
             mods.push(character[c] + "mod");
             elem.appendChild(newmod);
             newField.before(newlabel);
-            newlabel.before(newbr)
+            newlabel.before(newbr);
         } else if (loc == "skill" || loc == "savingthrows") {
             newField.type = 'checkbox';
             var newmod = document.createElement('input');
@@ -85,7 +94,10 @@ var character = 'CharacterName,Level,Class,Race,PlayerName,ExperiencePonts,Align
             elem.appendChild(newmod);
             elem.appendChild(newlabel);
             newlabel.appendChild(newbr);
-        } else { 
+        } else if (loc == "classdiv" || loc == "leveldiv" || loc == "backgrounddiv" || loc == "playernamediv" || loc == "racediv" || loc == "alignmentdiv" || loc == "experiencepointsdiv") { 
+        	  newField.after(newlabel);
+            newlabel.before(newbr);
+        } else if (loc == "charname") {} else {
         	newField.before(newlabel);
           newlabel.before(newbr);
         	newField.appendChild(newbr);
