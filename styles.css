@@ -207,7 +207,6 @@ justify-content: center;
 row1 {
   display: table-column;
   width: auto;
-  text-align: center;
   padding: 5px;
   border-spacing: 5px 5px;
   border-collapse:separate;
@@ -215,12 +214,7 @@ row1 {
   width: auto;
 }
 
-#ACIntSpeed, #hitpoints, #HDandDeath {
-  text-align: center;
-  flex-direction: row;
-}
-
-#ArmorClassDiv, #InitiativeDiv, #SpeedDiv, #HitPointMaximumDiv, #CurrentHitPointsDiv, #TemporaryHitPointsDiv {
+#ArmorClassDiv, #InitiativeDiv, #SpeedDiv, #HitPointMaximumDiv, #CurrentHitPointsDiv, #TemporaryHitPointsDiv, #deathsavediv {
 position: relative;
 display: table-cell;
 border: solid black 2px;
@@ -271,12 +265,9 @@ position: relative;
 display:table-cell;
 text-align: center;
 vertical-align: top;
-width: 80px;
+width: auto;
 background: white;
-border: solid black 2px;
 white-space: nowrap;
-padding-left: 5px;
-padding-right: 5px;
 }
 
 #TotalHitdicediv {
@@ -287,11 +278,9 @@ vertical-align: top;
 width: 80px;
 background: white;
 white-space: nowrap;
-padding-left: 5px;
-padding-right: 5px;
-border: solid black 2px;
 border-bottom: none;
-margin-bottom: -3px;
+margin-top: -3px;
+margin-bottom: 3px;
 z-index: 1000;
 }
 
@@ -299,10 +288,47 @@ HD {
   display: flex;
   Flex-direction: column;
   flex-wrap: nowrap;
+  justify-content: center;
+  border: solid black 2px;
   width: 80px;
   height: 70px;
+  border: solid black 2px;
+  padding: 5px;
+}
+
+HDDiv {
+  display: table-cell;
+  background: white;
+}
+
+DS {
+  display: table-cell;
+  width: 188px;
+  height: 70px;
   margin-left: 5px;
-  margin-top: 5px;
+  margin-top: 15px;
+  border: solid black 2px;
+  text-align: right;
+  vertical-align: middle;
+  background: white;
+}
+
+#successdiv, #failurediv {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 5px;
+}
+
+#successdiv input, #failurediv input {
+  height: 20px;
+  width: 20px;
+}
+
+#successdiv label, #failurediv label {
+  font-size: 1em;
+  margin-right: 5px;
 }
 
 col2 *::placeholder, subcol2 *::placeholder {
