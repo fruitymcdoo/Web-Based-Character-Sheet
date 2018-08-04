@@ -81,15 +81,15 @@ racediv,alignmentdiv,experiencepointsdiv {
 col1 {
 display: flex;
 width: auto;
-margin-right: 2%;
+margin-right: 10px;
 }
 
 subcol1 {
 background: lightgray;
-margin-right: 1%;
+margin-right: 5px;
 width: 120px;
 text-align: center;
-height: auto;
+height: 700px;
 }
 
 subcol2 {
@@ -98,6 +98,7 @@ subcol2 {
   text-align: center;
   border-spacing: 5px 0px;
   border-collapse:separate;
+  height: 700px;
 }
 
 abilityscores {
