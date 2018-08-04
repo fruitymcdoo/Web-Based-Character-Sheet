@@ -200,8 +200,7 @@ border-bottom: solid black 1px;
 
 col2 {
 display: flex;
-width: auto;
-justify-content: center;
+flex-direction: column;
 }
 
 row1 {
@@ -211,7 +210,7 @@ row1 {
   border-spacing: 5px 5px;
   border-collapse:separate;
   background: lightgray;
-  width: auto;
+  height: 282px;
 }
 
 #ArmorClassDiv, #InitiativeDiv, #SpeedDiv, #HitPointMaximumDiv, #CurrentHitPointsDiv, #TemporaryHitPointsDiv, #deathsavediv {
@@ -329,6 +328,56 @@ DS {
 #successdiv label, #failurediv label {
   font-size: 1em;
   margin-right: 5px;
+}
+
+#attacksspellcasting {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  border: solid black 2px;
+  text-align: center;
+  font-size: 0.75em;
+}
+
+.attack {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.attack input:nth-of-type(1), .attack input:nth-of-type(3), .attack input:nth-of-type(2) {
+  width: 111px;
+  background: lightgray;
+  border: none;
+  margin: 5px;
+  text-align:center;
+}
+
+.attack input:nth-of-type(2) {
+  width: 56px;
+}
+
+atklabels {
+  margin-top: 5px;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-size: 0.75rem;
+}
+
+#AttackNameLabel {
+  width: 111px;
+  margin-right: 5px;
+}
+#AttackBonusLabel {
+  width: 56px;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#AttackDmgTypeLabel {
+  width: 111px;
+  margin-left: 5px;
 }
 
 col2 *::placeholder, subcol2 *::placeholder {
