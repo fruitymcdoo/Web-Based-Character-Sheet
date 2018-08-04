@@ -192,29 +192,37 @@ margin-right: 5px;
 margin-top: 2px;
 margin-bottom: 1px;
 text-align: center;
-vertical-align: middle;
-border: solid black 1px;
+border: none;
+border-bottom: solid black 1px;
 }
+
+
 
 col2 {
-padding-top: 4px;
-position: relative;
-border-spacing: 8px 4px;
-border-collapse:separate;
-background: lightgray;
-text-align: center;
+display: flex;
+width: auto;
+justify-content: center;
 }
 
-#ACIntSpeed, #hitpoints {
+row1 {
   display: table-column;
   width: auto;
   text-align: center;
+  padding: 5px;
+  border-spacing: 5px 5px;
   border-collapse:separate;
+  background: lightgray;
+  width: auto;
+}
+
+#ACIntSpeed, #hitpoints, #HDandDeath {
+  text-align: center;
+  flex-direction: row;
 }
 
 #ArmorClassDiv, #InitiativeDiv, #SpeedDiv, #HitPointMaximumDiv, #CurrentHitPointsDiv, #TemporaryHitPointsDiv {
 position: relative;
-display:table-cell;
+display: table-cell;
 border: solid black 2px;
 text-align: center;
 vertical-align: top;
@@ -222,6 +230,7 @@ width: 80px;
 height: auto;
 padding: 5px;
 background: white;
+white-space: nowrap;
 }
 
 #ArmorClass, #Initiative, #Speed, #HitPointMaximum, #CurrentHitPoints, #TemporaryHitPoints {
@@ -232,8 +241,68 @@ border: none;
 font-size: 1.1em;
 }
 
-#ArmorClasslabel, #Initiativelabel, #Speedlabel, #HitPointMaximumlabel, #CurrentHitPointslabel, #TemporaryHitPointslabel {
+#ArmorClasslabel, #Initiativelabel, #Speedlabel, #HitPointMaximumlabel, #CurrentHitPointslabel, #TemporaryHitPointslabel, #TotalHitDicelabel, #HitDicelabel {
 font-size: 0.75em;
+}
+
+#HitDice {
+text-align: center;
+width: 80px;
+height: 25px;
+border: none;
+font-size: 1.1em;
+margin-top: 3px;
+}
+
+#TotalHitDice {
+width: 50px;
+height: 15px;
+margin-left: 2px;
+margin-right: 5px;
+margin-top: 2px;
+margin-bottom: 1px;
+text-align: center;
+border: none;
+border-bottom: solid black 1px;
+}
+
+#Hitdicediv {
+position: relative;
+display:table-cell;
+text-align: center;
+vertical-align: top;
+width: 80px;
+background: white;
+border: solid black 2px;
+white-space: nowrap;
+padding-left: 5px;
+padding-right: 5px;
+}
+
+#TotalHitdicediv {
+position: relative;
+display:table-cell;
+text-align: center;
+vertical-align: top;
+width: 80px;
+background: white;
+white-space: nowrap;
+padding-left: 5px;
+padding-right: 5px;
+border: solid black 2px;
+border-bottom: none;
+margin-bottom: -3px;
+z-index: 1000;
+}
+
+HD {
+  display: flex;
+  Flex-direction: column;
+  flex-wrap: nowrap;
+  width: 80px;
+  height: 70px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 col2 *::placeholder, subcol2 *::placeholder {

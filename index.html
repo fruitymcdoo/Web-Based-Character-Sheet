@@ -8,67 +8,81 @@
 </head>
     
 <body>
-    <top>
-        <name id=charname>
-        </name><br>
-        <info id=info>
-        <inforow1 id=inforow1>
-          <classdiv id=classdiv></classdiv>
-          <leveldiv id=leveldiv></leveldiv>
-          <backgrounddiv id=backgrounddiv></backgrounddiv>
-          <playernamediv id=playernamediv></playernamediv>
-        </inforow1>
-        <inforow2 id=inforow2>
-          <racediv id=racediv></racediv>
-          <alignmentdiv id=alignmentdiv></alignmentdiv>
-          <experiencepointsdiv id=experiencepointsdiv></experiencepointsdiv>
-        </inforow2>
-        </info><br>
-    </top>
-  <columns>   
-    <col1>
-      <subcol1>
-        <abilityscores>
-            <abilityscore id=abilityscore>
-            </abilityscore><br>
-        </abilityscores>
-      </subcol1>
-      <subcol2>
-        <inspirationdiv id=inspirationdiv>
-        </inspirationdiv>
-        <proficiency id=proficiency>
-        </proficiency><br>
-        <savingthrows id=savingthrows>
-            Saving Throws<br>
-        </savingthrows><br>
-        <skill id=skill>
-            Skills<br>
-        </skill><br>
-      </subcol2> 
-    </col1>
-    <col2>
-        <ACInitSpeed id=ACInitSpeed>
-          <ArmorClassDiv id=ArmorClassDiv></ArmorClassDiv>
-          <InitiativeDiv id=InitiativeDiv></InitiativeDiv>
-          <SpeedDiv id=SpeedDiv></SpeedDiv>
-        </ACInitSpeed><br>
-        <Hitpoints id=hitpoints></Hitpoints>
-          <HitPointMaximumDiv id=HitPointMaximumDiv></HitPointMaximumDiv>
-          <CurrentHitPointsDiv id=CurrentHitPointsDiv></CurrentHitPointsDiv>
-          <TemporaryHitPointsDiv id=TemporaryHitPointsDiv></TemporaryHitPointsDiv>
-        <HDandDeath id=HDandDeath></HDandDeath>
-    </col2>
-  </columns>
-    <br><br><br><br><br>
-    <button type=button id=downloadbutton>Save File</button><br>
-    <input type="file" id="fileInput">
+  <top>
+      <name id=charname>
+      </name><br>
+      <info id=info>
+      <inforow1 id=inforow1>
+        <classdiv id=classdiv></classdiv>
+        <leveldiv id=leveldiv></leveldiv>
+        <backgrounddiv id=backgrounddiv></backgrounddiv>
+        <playernamediv id=playernamediv></playernamediv>
+      </inforow1>
+      <inforow2 id=inforow2>
+        <racediv id=racediv></racediv>
+        <alignmentdiv id=alignmentdiv></alignmentdiv>
+        <experiencepointsdiv id=experiencepointsdiv></experiencepointsdiv>
+      </inforow2>
+      </info><br>
+  </top>
+<columns>   
+  <col1>
+    <subcol1>
+      <abilityscores>
+          <abilityscore id=abilityscore>
+          </abilityscore><br>
+      </abilityscores>
+    </subcol1>
+    <subcol2>
+      <inspirationdiv id=inspirationdiv>
+      </inspirationdiv>
+      <proficiency id=proficiency>
+      </proficiency><br>
+      <savingthrows id=savingthrows>
+          Saving Throws<br>
+      </savingthrows><br>
+      <skill id=skill>
+          Skills<br>
+      </skill><br>
+    </subcol2> 
+  </col1>
+  <col2>
+     <row1>
+      <ACInitSpeed id=ACInitSpeed>
+        <ArmorClassDiv id=ArmorClassDiv></ArmorClassDiv>
+        <InitiativeDiv id=InitiativeDiv></InitiativeDiv>
+        <SpeedDiv id=SpeedDiv></SpeedDiv>
+      </ACInitSpeed><br>
+      <Hitpoints id=hitpoints>
+        <HitPointMaximumDiv id=HitPointMaximumDiv></HitPointMaximumDiv>
+        <CurrentHitPointsDiv id=CurrentHitPointsDiv></CurrentHitPointsDiv>
+        <TemporaryHitPointsDiv id=TemporaryHitPointsDiv></TemporaryHitPointsDiv>
+      </Hitpoints><br>
+      <HDandDeath id=HDandDeath>
+      <HDDiv>
+        <HD>
+          <TotalHitdicediv id=TotalHitdicediv></TotalHitdicediv>
+          <Hitdicediv id=Hitdicediv></Hitdicediv>
+        </HD>
+      </HDDiv>
+        <DS>
+          <successdiv id=successdiv></successdiv>
+          <failurediv id=failurediv></failurediv>
+        </DS>
+      </HDandDeath>
+    </row1>
+  </col2>
+</columns>
+  <br><br><br><br><br>
+  <button type=button id=downloadbutton>Save File</button><br>
+  <input type="file" id="fileInput">
 </body>
 
 <script>
 //how to use: insert fields into the character variable, and locations for each field in to the locations variable. match via index. each character field NEEDS a location field. script then automatically creates inputs for each character field and assigns them to a div by ID based on the location.
-var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,ExperiencePoints,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival,ArmorClass,Initiative,Speed,HitPointMaximum,CurrentHitPoints,TemporaryHitPoints,HitDice,DeathSaves'.split(',');
-    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspirationdiv,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,ArmorClassDiv,InitiativeDiv,SpeedDiv,HitPointMaximumDiv,CurrentHitPointsDiv,TemporaryHitPointsDiv,HDandDeath,HDandDeath'.split(',');
-    var label = 'Character Name,Class,Level,Background,Player Name,Race,Alignment,Experience Points,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis),Armor Class,Initiative,Speed,Maximum HP,Current HP,Temporary HP,Hit Dice,Death Saves'.split(',');
+var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,ExperiencePoints,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,ProficiencyBonus,StrengthSave,DexteritySave,ConstitutionSave,IntelligenceSave,WisdomSave,CharismaSave,Acrobatics,AnimalHandling,Arcana,Athletics,Deception,History,Insight,Intimidation,Investigation,Medicine,Nature,Perception,Performance,Persuasion,Religion,SleightofHand,Stealth,Survival,ArmorClass,Initiative,Speed,HitPointMaximum,CurrentHitPoints,TemporaryHitPoints,TotalHitDice,HitDice,dssuccess1,dssuccess2,dssuccess3,dsfailure1,dsfailure2,dsfailure3'.split(',');
+    var locations = 'charname,classdiv,leveldiv,backgrounddiv,playernamediv,racediv,alignmentdiv,experiencepointsdiv,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,abilityscore,inspirationdiv,proficiency,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,savingthrows,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,skill,ArmorClassDiv,InitiativeDiv,SpeedDiv,HitPointMaximumDiv,CurrentHitPointsDiv,TemporaryHitPointsDiv,TotalHitdicediv,Hitdicediv,successdiv,successdiv,successdiv,failurediv,failurediv,failurediv'.split(',');
+    var label = 'Character Name,Class,Level,Background,Player Name,Race,Alignment,Experience Points,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Inspiration,Proficiency Bonus,Strength,Dexterity,Constitution,Intelligence,Wisdom,Charisma,Acrobatics (Dex),Animal Handling (Wis),Arcana (Int),Athletics (Str),Deception (Cha),History (Int),Insight (Wis),Intimidation (Cha),Investigation (Int),Medicine (Wis),Nature (Int),Perception (Wis),Performance (Cha),Persuasion (Cha),Religion (Int),Sleight of Hand (Dex),Stealth (Dex),Survival (Wis),Armor Class,Initiative,Speed,Maximum HP,Current HP,Temporary HP,Total,Hit Dice,Successes,,,Failures,,'.split(',');
     var SkillsAndAbilities = {"Athletics":"Strength","Acrobatics":"Dexterity","SleightofHand":"Dexterity","Stealth":"Dexterity","Arcana":"Intelligence","History":"Intelligence","Investigation":"Intelligence","Nature":"Intelligence","Religion":"Intelligence","AnimalHandling":"Wisdom","Insight":"Wisdom","Medicine":"Wisdom","Perception":"Wisdom","Survival":"Wisdom","Deception":"Charisma","Intimidation":"Charisma","Performance":"Charisma","Persuasion":"Charisma"}
     var mods = new Array();
     var loccount = 0; //hack to iterate through locations because [c] wouldn't work for some reason.
@@ -97,6 +111,9 @@ var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,
             elem.appendChild(newmod);
             newField.before(newlabel);
             newlabel.before(newbr);
+        } else if (loc == "successdiv" || loc == "failurediv") {
+        		newField.type = 'checkbox';
+            newField.before(newlabel);
         } else if (loc == "skill" || loc == "savingthrows") {
             newField.type = 'checkbox';
             var newmod = document.createElement('input');
@@ -107,9 +124,11 @@ var character = 'CharacterName,Class,Level,Background,PlayerName,Race,Alignment,
             elem.appendChild(newmod);
             elem.appendChild(newlabel);
             newlabel.appendChild(newbr);
-        } else if (loc == "classdiv" || loc == "leveldiv" || loc == "backgrounddiv" || loc == "playernamediv" || loc == "racediv" || loc == "alignmentdiv" || loc == "experiencepointsdiv" || loc == "ArmorClassDiv" || loc == "InitiativeDiv" || loc == "SpeedDiv" || loc == "HitPointMaximumDiv" || loc == "CurrentHitPointsDiv" || loc == "TemporaryHitPointsDiv") { 
+        } else if (loc == "classdiv" || loc == "leveldiv" || loc == "backgrounddiv" || loc == "playernamediv" || loc == "racediv" || loc == "alignmentdiv" || loc == "experiencepointsdiv" || loc == "ArmorClassDiv" || loc == "InitiativeDiv" || loc == "SpeedDiv" || loc == "HitPointMaximumDiv" || loc == "CurrentHitPointsDiv" || loc == "TemporaryHitPointsDiv" || loc == "Hitdicediv") { 
         	  newField.after(newlabel);
             newlabel.before(newbr);
+        } else if (loc == "TotalHitdicediv") {
+        		newField.before(newlabel);
         } else if (loc == "charname") {} else {
         	newField.before(newlabel);
           newlabel.before(newbr);
