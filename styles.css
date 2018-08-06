@@ -78,7 +78,6 @@ racediv,alignmentdiv,experiencepointsdiv {
 subrow1 {
 display: flex;
 flex-direction: row;
-width: auto;
 margin-right: 10px;
 }
 
@@ -88,13 +87,14 @@ margin-right: 5px;
 width: 120px;
 text-align: center;
 margin-bottom: 10px;
-height: 750px;
+flex-grow: 1;
 }
 
 subcol2 {
-  border-spacing: 5px 0px;
-  border-collapse:separate;
-  height: 750px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 2;
+  align-items: stretch
 }
 
 abilityscores {
@@ -117,7 +117,7 @@ font-size: 1.1em;
 .abilityscoremod {
 font-size: 1.2em;
 position: relative;
-margin-bottom: 26px;
+margin-bottom: 24px;
 width: 40px;
 height: 30px;
 border: solid black 2px;
@@ -133,17 +133,23 @@ margin-left: 2px;
 text-align: center;
 }
 
+#InspAndProf {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
 #inspirationdiv, #proficiency {
 position: relative;
-display:table-cell;
 border: solid black 2px;
 text-align: center;
 vertical-align: top;
-width: 50%;
-height: auto;
 padding: 5px;
+margin: 5px;
 background: white;
 white-space: nowrap;
+width: 100%;
 }
 
 #Inspiration, #ProficiencyBonus {
@@ -165,9 +171,8 @@ white-space: nowrap;
   text-align: center;
   align-items: center;
   padding: 5px;
-  padding-right: 2px;
+  margin: 5px;
   background: white;
-  margin-left: 5px;
   justify-content: center;
 }
 
@@ -182,42 +187,39 @@ white-space: nowrap;
 }
 
 savingthrows {
-display:table-cell;
+display: flex;
+flex-direction: column;
 border: solid black 2px;
 padding: 5px;
-text-align: left;
-width: 212px;
-white-space: nowrap;
+margin: 5px;
 }
 
 skill {
-display: table-cell;
+display: flex;
+flex-direction: column;
 border: solid black 2px;
-width: 212px;
-white-space: nowrap;
 text-align: left;
 padding: 5px;
+margin: 5px;
 }
 
-pp {
-  display: flex;
-  width: auto;
-  margin-right: 5px;
-}
-
-.skill {
-position: relative;
-vertical-align: middle;
-}
-
-.skillmod, .savingthrowsmod {
+#skill > * > input , #savingthrows > * > input {
 width: 25px;
 margin-right: 5px;
 margin-top: 2px;
 margin-bottom: 1px;
+margin-left: -5px;
 text-align: center;
 border: none;
 border-bottom: solid black 1px;
+}
+
+.SavingThrowDiv, .SkillDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-top: 5px;
+  align-items: center;
 }
 
 otherdiv {
