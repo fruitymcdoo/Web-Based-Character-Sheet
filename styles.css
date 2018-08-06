@@ -82,12 +82,12 @@ margin-right: 10px;
 }
 
 subcol1 {
-background: lightgray;
 margin-right: 5px;
 width: 120px;
 text-align: center;
 margin-bottom: 10px;
 flex-grow: 1;
+height: auto;
 }
 
 subcol2 {
@@ -97,8 +97,13 @@ subcol2 {
   align-items: stretch
 }
 
-abilityscores {
-  text-align: center;
+abilityscore {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background: lightgray;
+  padding-bottom: 10px;
 }
 
 .abilityscore {
@@ -117,7 +122,6 @@ font-size: 1.1em;
 .abilityscoremod {
 font-size: 1.2em;
 position: relative;
-margin-bottom: 24px;
 width: 40px;
 height: 30px;
 border: solid black 2px;
