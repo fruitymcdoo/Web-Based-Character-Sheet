@@ -240,6 +240,7 @@ otherdiv {
   flex-direction: column;
   align-items: center;
   margin-right: 15px;
+  margin-top: 10px;
   border: solid black 2px;
 }
 
@@ -394,7 +395,7 @@ DS {
 #attacksspellcasting {
   display: flex;
   flex-direction: column;
-  margin-top: 15px;
+  margin-top: 10px;
   padding-bottom: 5px;
   border: solid black 2px;
   text-align: center;
@@ -471,7 +472,7 @@ equipmentdiv {
   flex-direction: row;
   flex-wrap: nowrap;
   border: solid black 2px;
-  margin-top: 30px;
+  margin-top: 15px;
   justify-content: space-between;
   padding-bottom:20px;
 }
