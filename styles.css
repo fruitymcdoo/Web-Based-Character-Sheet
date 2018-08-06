@@ -100,10 +100,10 @@ subcol2 {
 abilityscore {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+  justify-content: stretch;
   background: lightgray;
-  padding-bottom: 10px;
+  height: 761px;
+  align-items: center;
 }
 
 .abilityscore {
