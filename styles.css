@@ -247,7 +247,7 @@ otherdiv {
   text-align: center;
   margin: 10px;
   width: 325px;
-  height: 330px;
+  height: 254px;
   border: none;
   font-size: 1em;
   color: black;
@@ -483,7 +483,6 @@ equipmentdiv {
   padding: 5px;
   border:none;
   height: 322px;
-  width: 190px;
 }
 
 #Equipment::placeholder {
@@ -515,8 +514,8 @@ Money > * > label {
 
 
 #CP,#SP,#EP,#GP,#PP{
-  width: 60px;
-  height: 30px;
+  width: 80px;
+  height: 40px;
   margin: 3px;
   margin-left: -4px;
   padding: 5px;
