@@ -1,0 +1,81 @@
+<body>
+  <top>
+      <name id=charname>
+      </name><br>
+      <info id=info>
+      <inforow1 id=inforow1>
+      </inforow1>
+      <inforow2 id=inforow2>
+      </inforow2>
+      </info><br>
+  </top>
+<columns>   
+  <col1>
+  <subrow1>
+    <subcol1>
+      <abilityscore id=abilityscore>
+      </abilityscore>
+    </subcol1>
+    <subcol2>
+      <InspAndProf id=InspAndProf>
+        <inspirationdiv id=inspirationdiv>
+        </inspirationdiv>
+        <proficiency id=proficiency>
+        </proficiency>
+      </InspAndProf>
+      <savingthrows id=savingthrows>
+          Saving Throws<br>
+      </savingthrows>
+      <skills id=skills>
+          Skills<br>
+      </skills>
+      <pp id=pperception>
+      </pp>
+    </subcol2> 
+  </subrow1>
+  <otherdiv id=otherdiv></otherdiv> 
+  </col1>
+  <col2>
+     <row1>
+      <ACInitSpeed id=combatstats>
+      </ACInitSpeed><br>
+      <Hitpoints id=hitpoints>
+      </Hitpoints><br>
+      <HDandDeath id=HDandDeath>
+        <DS>
+          <successdiv id=successdiv></successdiv>
+          <failurediv id=failurediv></failurediv>
+        </DS>
+      </HDandDeath>
+    </row1>
+    <row2>
+      <attacksspellcasting id=attacksspellcasting>
+      <atklabels>
+        <AttackNameLabel id=AttackNameLabel>Name</AttackNameLabel>
+        <AttackBonusLabel id=AttackBonusLabel>Bonus</AttackBonusLabel>
+        <AttackDmgTypeLabel id=AttackDmgTypeLabel>Damage/Type</AttackDmgTypeLabel>
+      </atklabels>
+        <atk1 id=atk1 class=attack></atk1>
+        <atk2 id=atk2 class=attack></atk2>
+        <atk3 id=atk3 class=attack></atk3>
+        <atk4 id=atk4 class=attack></atk4>
+        <atk5 id=atk5 class=attack></atk5>
+        <AtkInfoDiv id=AtkInfoDiv></AtkInfoDiv>
+      </attacksspellcasting>
+    </row2>
+    <row3>
+      <equipmentdiv id=equipmentdiv>
+        <money id=money>
+        </money>
+      </equipmentdiv>
+      <label for="equipmentdiv" id="equipmentdivlabel" class="equipmentdivlabel">Equipment</label>
+    </row3>
+  </col2>
+  <col3>
+    <characterdetails id=characterdetails></characterdetails>\
+  </col3>
+</columns>
+  <br><br><br><br><br>
+  <button type=button id=downloadbutton>Save File</button><br>
+  <input type="file" id="fileInput">
+</body>

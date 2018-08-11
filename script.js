@@ -89,18 +89,20 @@ function populate (){
 var keys = Object.keys(character);
 for (var i = 0; i < keys.length; i++){
 var nextkey = keys[i];
+//defining what each property is
 var fieldname = character[nextkey][0];
 var fieldtype = character[nextkey][1];
 var fieldmod = character[nextkey][2];
 var fieldability = character[nextkey][3];
 var fieldlocation = character[nextkey][4];
 var fieldlabel = character[nextkey][5];
+//defining what each property is
 var location = document.getElementById(fieldlocation);
 if (fieldtype == 'textarea'){var newField = document.createElement(fieldtype);} else {var newField = document.createElement('input');}
 var newDiv = document.createElement(fieldname + "Div");
+var newLabel = document.createElement("label");
 newDiv.classList.add(fieldname, fieldtype, fieldmod, fieldlocation, "div")
 location.appendChild(newDiv);
-var newLabel = document.createElement("label");
 newLabel.setAttribute("for",fieldname);
 newLabel.id = fieldname + "label";
 newLabel.classList.add(fieldname, fieldtype, fieldmod, fieldlocation, "label");

@@ -1,0 +1,79 @@
+body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+top {
+  display: flex;
+  flex-direction: row;
+}
+
+#inforow1, #inforow2 {
+  display: flex;
+  flex-direction: row;
+}
+
+columns {
+  display: flex;
+  flex-direction: row;
+}
+
+col1, col2, col3 {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+subcol1, abilityscore {
+  display: flex;
+  flex-direction: column;
+}
+
+subrow1 {
+  display: flex; 
+  flex-direction: row;
+}
+
+abilityscore {
+  background: lightgray;
+  padding: 5px;
+}
+
+abilityscore > * > :not(.mod):not(.label) {
+  width: 90px;
+  height: 100px;
+  border: solid black 2px;
+  text-align: center;
+}
+
+abilityscore > * > .mod {
+  width: 45px;
+  height: 25px;
+  margin-top: -15px;
+  border: solid black 2px;
+  text-align: center;
+}
+
+abilityscore > .div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+abilityscore > * > .label {
+  margin-top: -115px;
+  margin-bottom: 105px;
+}
+
+InspAndProf > * > * {
+  display: flex;
+  flex-direction: row;
+  border: solid black 2px;
+}
+
+InspAndProf > * > * > :not(.mod):not(.label) {
+  width: 50px;
+  text-align: center;
+}
